@@ -35,24 +35,42 @@ class SelectGameTheme extends StatelessWidget {
       },
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Container(
-          height: 150,
-          decoration: BoxDecoration(
-            color: gameTheme.backgroundColor,
-            border: (_gameThemeController.selectedTheme.value == gameTheme)
-                ? Border.all(width: 4, color: Colors.green)
-                : Border.all(width: 0),
-          ),
-          child: Center(
-            child: Container(
+        child: Stack(
+          children: [
+            Container(
+              height: 150,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                color: gameTheme.cardColor,
+                color: gameTheme.backgroundColor,
+                borderRadius: BorderRadius.circular(20),
               ),
-              height: 60,
-              width: 40,
+              child: Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    color: gameTheme.cardColor,
+                  ),
+                  height: 60,
+                  width: 40,
+                ),
+              ),
             ),
-          ),
+            _gameThemeController.selectedTheme.value == gameTheme
+                ? Container(
+                    height: 150,
+                    decoration: BoxDecoration(
+                      color: Colors.black45,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Center(
+                      child: Icon(
+                        Icons.check,
+                        color: Colors.white60,
+                        size: 100,
+                      ),
+                    ),
+                  )
+                : Container()
+          ],
         ),
       ),
     );
